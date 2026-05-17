@@ -12,33 +12,37 @@ class AttendancePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<AttendanceBloc>()..add(const AttendanceEvent.started()),
+      create: (context) =>
+          getIt<AttendanceBloc>()..add(const AttendanceEvent.started()),
       child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          title: const Text('Attendance'),
-        ),
+        appBar: AppBar(title: const Text('Attendance')),
         body: BlocConsumer<AttendanceBloc, AttendanceState>(
           listener: (context, state) {
             state.maybeWhen(
               loaded: (_, __, ___, ____, error, success) {
                 if (error != null) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(error), backgroundColor: AppColors.error),
+                    SnackBar(
+                      content: Text(error),
+                      backgroundColor: AppColors.error,
+                    ),
                   );
                 }
                 if (success != null) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(success), backgroundColor: AppColors.success),
+                    SnackBar(
+                      content: Text(success),
+                      backgroundColor: AppColors.success,
+                    ),
                   );
                 }
               },
               error: (message) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(message), backgroundColor: AppColors.error),
+                  SnackBar(
+                    content: Text(message),
+                    backgroundColor: AppColors.error,
+                  ),
                 );
               },
               orElse: () {},
@@ -49,53 +53,67 @@ class AttendancePage extends StatelessWidget {
               initial: () => const Center(child: CircularProgressIndicator()),
               loading: () => const Center(child: CircularProgressIndicator()),
               error: (message) => Center(child: Text(message)),
-              loaded: (officeLocation, currentLocation, distance, isInRange, _, __) {
-                return SingleChildScrollView(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    children: [
-                      OfficeContextCard(
-                        officeLocation: officeLocation,
-                        currentLocation: currentLocation,
-                        onSetLocation: () {
-                          context.read<AttendanceBloc>().add(const AttendanceEvent.setOfficeLocation());
-                        },
-                      ),
-                      const SizedBox(height: 40),
-                      DistanceIndicator(
-                        distance: distance,
-                        isInRange: isInRange,
-                      ),
-                      const SizedBox(height: 60),
-                      ElevatedButton(
-                        onPressed: isInRange
-                            ? () {
-                                context.read<AttendanceBloc>().add(const AttendanceEvent.markAttendance());
-                              }
-                            : null,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              isInRange ? Icons.lock_open : Icons.lock_outline,
-                              color: AppColors.white,
+              loaded:
+                  (
+                    officeLocation,
+                    currentLocation,
+                    distance,
+                    isInRange,
+                    _,
+                    __,
+                  ) {
+                    return SingleChildScrollView(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        children: [
+                          OfficeContextCard(
+                            officeLocation: officeLocation,
+                            currentLocation: currentLocation,
+                            onSetLocation: () {
+                              context.read<AttendanceBloc>().add(
+                                const AttendanceEvent.setOfficeLocation(),
+                              );
+                            },
+                          ),
+                          const SizedBox(height: 40),
+                          DistanceIndicator(
+                            distance: distance,
+                            isInRange: isInRange,
+                          ),
+                          const SizedBox(height: 60),
+                          ElevatedButton(
+                            onPressed: isInRange
+                                ? () {
+                                    context.read<AttendanceBloc>().add(
+                                      const AttendanceEvent.markAttendance(),
+                                    );
+                                  }
+                                : null,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  isInRange
+                                      ? Icons.lock_open
+                                      : Icons.lock_outline,
+                                  color: AppColors.white,
+                                ),
+                                const SizedBox(width: 10),
+                                const Text(
+                                  'Mark Attendance',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.white,
+                                  ),
+                                ),
+                              ],
                             ),
-                            const SizedBox(width: 10),
-                            const Text(
-                              'Mark Attendance',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.white,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                );
-              },
+                    );
+                  },
             );
           },
         ),
