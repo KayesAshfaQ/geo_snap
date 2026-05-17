@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'src/core/di/injection.dart';
 import 'src/core/router/app_router.dart';
+import 'src/core/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,10 +20,8 @@ class MainApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'GeoSnap',
       routerConfig: appRouter,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorSchemeSeed: Colors.blue,
-      ),
+      theme: AppTheme.lightTheme,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
