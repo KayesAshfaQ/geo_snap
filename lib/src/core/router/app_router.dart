@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/attendance/presentation/pages/attendance_page.dart';
 
 final appRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/attendance',
   routes: [
     GoRoute(
       path: '/',
@@ -11,6 +12,10 @@ final appRouter = GoRouter(
           child: Text('GeoSnap Initialized'),
         ),
       ),
+    ),
+    GoRoute(
+      path: '/attendance',
+      builder: (context, state) => const AttendancePage(),
     ),
   ],
 );
