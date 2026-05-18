@@ -89,7 +89,9 @@ You can find the latest debug build of the application in the `releases/` direct
 
 ## 📸 Screenshots
 
-*(Include screenshots of the Attendance Screen and Camera Sync here)*
+| Attendance Screen | Camera UI | Upload Manager |
+| :---: | :---: | :---: |
+| ![Attendance](docs/screenshots/attendance.png) | ![Camera](docs/screenshots/camera.png) | ![Upload Manager](docs/screenshots/upload_manager.png) |
 
 ---
 *Developed as part of the App Developer Technical Assessment.*
