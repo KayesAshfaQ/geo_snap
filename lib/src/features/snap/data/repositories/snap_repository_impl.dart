@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/error/failure.dart';
@@ -42,6 +43,39 @@ class SnapRepositoryImpl implements MediaRepository {
         return unit;
       },
       (error, stackTrace) => CacheFailure(error.toString()),
+    );
+  }
+
+  @override
+  TaskEither<Failure, Unit> syncMedia(MediaAsset media) {
+    return TaskEither.tryCatch(
+      () async {
+        // Update status to uploading
+        await localDataSource.updateMediaStatus(media.id, MediaStatus.uploading.name, progress: 0.0);
+
+        // Simulate chunked upload
+        for (int i = 1; i <= 10; i++) {
+          await Future.delayed(const Duration(milliseconds: 500));
+          await localDataSource.updateMediaStatus(
+            media.id,
+            MediaStatus.uploading.name,
+            progress: i / 10.0,
+          );
+        }
+
+        // Mock Finalize status
+        final isSuccess = Random().nextDouble() > 0.1; // 90% success rate
+        if (isSuccess) {
+          await localDataSource.deleteMedia(media.id);
+        } else {
+          await localDataSource.updateMediaStatus(
+            media.id,
+            MediaStatus.failed.name,
+          );
+        }
+        return unit;
+      },
+      (error, stackTrace) => ServerFailure(error.toString()),
     );
   }
 

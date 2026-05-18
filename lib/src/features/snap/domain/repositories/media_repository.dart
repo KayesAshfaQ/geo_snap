@@ -6,6 +6,7 @@ abstract class MediaRepository {
   TaskEither<Failure, Unit> saveMedia(MediaAsset media);
   TaskEither<Failure, List<MediaAsset>> getPendingMedia();
   TaskEither<Failure, Unit> updateMediaStatus(String id, MediaStatus status, {double? progress});
+  TaskEither<Failure, Unit> syncMedia(MediaAsset media);
   TaskEither<Failure, Unit> deleteMedia(String id);
   TaskEither<Failure, Unit> clearSyncedMedia();
 }
