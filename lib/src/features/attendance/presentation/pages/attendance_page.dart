@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/di/injection.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../bloc/attendance_bloc.dart';
@@ -15,7 +16,15 @@ class AttendancePage extends StatelessWidget {
       create: (context) =>
           getIt<AttendanceBloc>()..add(const AttendanceEvent.started()),
       child: Scaffold(
-        appBar: AppBar(title: const Text('Attendance')),
+        appBar: AppBar(
+          title: const Text('Attendance'),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.camera_alt_outlined),
+              onPressed: () => context.push('/snap'),
+            ),
+          ],
+        ),
         body: BlocConsumer<AttendanceBloc, AttendanceState>(
           listener: (context, state) {
             state.maybeWhen(

@@ -13,6 +13,10 @@ class DistanceIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final isDark = theme.brightness == Brightness.dark;
+
     return Column(
       children: [
         Stack(
@@ -24,9 +28,9 @@ class DistanceIndicator extends StatelessWidget {
               child: CircularProgressIndicator(
                 value: isInRange ? 1.0 : (distance > 1000 ? 0.1 : (1000 - distance) / 1000),
                 strokeWidth: 8,
-                backgroundColor: AppColors.greyLight,
+                backgroundColor: colorScheme.surfaceVariant,
                 valueColor: AlwaysStoppedAnimation<Color>(
-                  isInRange ? AppColors.success : AppColors.errorAccent,
+                  isInRange ? AppColors.success : colorScheme.error,
                 ),
               ),
             ),
@@ -35,17 +39,17 @@ class DistanceIndicator extends StatelessWidget {
               children: [
                 Text(
                   '${distance.toInt()}m',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.primary,
+                    color: colorScheme.primary,
                   ),
                 ),
-                const Text(
+                Text(
                   'AWAY',
                   style: TextStyle(
                     fontSize: 10,
-                    color: AppColors.greyText,
+                    color: theme.textTheme.bodySmall?.color ?? AppColors.greyText,
                   ),
                 ),
               ],
@@ -56,7 +60,9 @@ class DistanceIndicator extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
           decoration: BoxDecoration(
-            color: isInRange ? AppColors.successLight : AppColors.errorLight,
+            color: isInRange
+                ? (isDark ? AppColors.successDark.withOpacity(0.2) : AppColors.successLight)
+                : (isDark ? AppColors.errorDark.withOpacity(0.2) : AppColors.errorLight),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
@@ -64,14 +70,14 @@ class DistanceIndicator extends StatelessWidget {
             children: [
               Icon(
                 Icons.circle,
-                color: isInRange ? AppColors.success : AppColors.error,
+                color: isInRange ? AppColors.success : colorScheme.error,
                 size: 10,
               ),
               const SizedBox(width: 8),
               Text(
                 isInRange ? 'IN RANGE' : 'OUT OF RANGE',
                 style: TextStyle(
-                  color: isInRange ? AppColors.success : AppColors.error,
+                  color: isInRange ? AppColors.success : colorScheme.error,
                   fontWeight: FontWeight.bold,
                   fontSize: 12,
                 ),
@@ -81,10 +87,13 @@ class DistanceIndicator extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         if (!isInRange)
-          const Text(
+          Text(
             'Move within 50 meters of the designated office location\nto enable check-in.',
             textAlign: TextAlign.center,
-            style: TextStyle(color: AppColors.greyText, fontSize: 12),
+            style: TextStyle(
+              color: theme.textTheme.bodySmall?.color ?? AppColors.greyText,
+              fontSize: 12,
+            ),
           ),
       ],
     );

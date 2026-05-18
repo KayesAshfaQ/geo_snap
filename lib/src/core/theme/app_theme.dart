@@ -7,10 +7,13 @@ class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
+      brightness: Brightness.light,
       colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.primary,
         primary: AppColors.primary,
-        surface: AppColors.background,
+        surface: AppColors.surface,
+        background: AppColors.background,
+        onPrimary: AppColors.white,
       ),
       scaffoldBackgroundColor: AppColors.background,
       appBarTheme: const AppBarTheme(
@@ -35,21 +38,6 @@ class AppTheme {
           ),
         ),
       ),
-      /* ElevatedButtonThemeData(
-        style: ButtonStyle(
-          backgroundColor: WidgetStateProperty.resolveWith<Color?>((states) {
-            if (states.contains(WidgetState.disabled)) {
-              return AppColors.disabled;
-            }
-            return AppColors.primary;
-          }),
-          foregroundColor: const WidgetStatePropertyAll(AppColors.white),
-          minimumSize: const WidgetStatePropertyAll(Size(double.infinity, 60)),
-          shape: WidgetStatePropertyAll(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          ),
-        ),
-      ), */
       textTheme: const TextTheme(
         titleLarge: TextStyle(
           color: AppColors.primary,
@@ -60,4 +48,51 @@ class AppTheme {
       ),
     );
   }
+
+  static ThemeData get darkTheme {
+    return ThemeData(
+      useMaterial3: true,
+      brightness: Brightness.dark,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: AppColors.primaryDark,
+        brightness: Brightness.dark,
+        primary: AppColors.primaryDark,
+        surface: AppColors.surfaceDark,
+        background: AppColors.backgroundDark,
+        onPrimary: AppColors.white,
+      ),
+      scaffoldBackgroundColor: AppColors.backgroundDark,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.backgroundDark,
+        elevation: 0,
+        centerTitle: false,
+        iconTheme: IconThemeData(color: AppColors.white),
+        titleTextStyle: TextStyle(
+          color: AppColors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.primaryDark,
+          foregroundColor: AppColors.white,
+          disabledBackgroundColor: AppColors.disabledDark,
+          minimumSize: const Size(double.infinity, 60),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
+      ),
+      textTheme: const TextTheme(
+        titleLarge: TextStyle(
+          color: AppColors.white,
+          fontWeight: FontWeight.bold,
+        ),
+        bodyLarge: TextStyle(color: AppColors.greyTextDark),
+        bodyMedium: TextStyle(color: AppColors.greyTextDark),
+      ),
+    );
+  }
 }
+

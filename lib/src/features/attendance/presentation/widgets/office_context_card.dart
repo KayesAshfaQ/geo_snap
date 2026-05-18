@@ -16,13 +16,22 @@ class OfficeContextCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: colorScheme.surface,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: const [
-          BoxShadow(color: AppColors.shadow, spreadRadius: 5, blurRadius: 10),
+        boxShadow: [
+          BoxShadow(
+            color: theme.brightness == Brightness.light
+                ? AppColors.shadow
+                : AppColors.black.withOpacity(0.3),
+            spreadRadius: 5,
+            blurRadius: 10,
+          ),
         ],
       ),
       child: Column(
@@ -31,16 +40,16 @@ class OfficeContextCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'STEP 1: OFFICE CONTEXT',
                 style: TextStyle(
-                  color: AppColors.greyText,
+                  color: theme.textTheme.bodySmall?.color ?? AppColors.greyText,
                   fontWeight: FontWeight.bold,
                   fontSize: 12,
                 ),
               ),
               if (officeLocation == null)
-                Icon(Icons.circle, color: AppColors.accent, size: 10),
+                Icon(Icons.circle, color: colorScheme.primary, size: 10),
             ],
           ),
           const SizedBox(height: 15),
@@ -48,17 +57,17 @@ class OfficeContextCard extends StatelessWidget {
             height: 150,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: AppColors.greyLight,
+              color: colorScheme.surfaceVariant.withOpacity(0.3),
               borderRadius: BorderRadius.circular(15),
-              border: Border.all(color: AppColors.greyMedium),
+              border: Border.all(color: colorScheme.outlineVariant),
             ),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.map_outlined,
-                    color: AppColors.accent,
+                    color: colorScheme.primary,
                     size: 40,
                   ),
                   const SizedBox(height: 10),
@@ -66,16 +75,21 @@ class OfficeContextCard extends StatelessWidget {
                     officeLocation != null
                         ? 'Office: ${officeLocation!.latitude.toStringAsFixed(4)}, ${officeLocation!.longitude.toStringAsFixed(4)}'
                         : 'Lat: ${currentLocation.latitude.toStringAsFixed(4)}, Lon: ${currentLocation.longitude.toStringAsFixed(4)}',
-                    style: const TextStyle(color: AppColors.greyText),
+                    style: TextStyle(
+                      color: theme.textTheme.bodyMedium?.color ?? AppColors.greyText,
+                    ),
                   ),
                 ],
               ),
             ),
           ),
           const SizedBox(height: 15),
-          const Text(
+          Text(
             'To mark your attendance, ensure your current office location is correctly identified.',
-            style: TextStyle(color: AppColors.greyText, fontSize: 13),
+            style: TextStyle(
+              color: theme.textTheme.bodyMedium?.color ?? AppColors.greyText,
+              fontSize: 13,
+            ),
           ),
           const SizedBox(height: 20),
           OutlinedButton.icon(
@@ -84,20 +98,15 @@ class OfficeContextCard extends StatelessWidget {
               officeLocation != null
                   ? Icons.edit_location_alt
                   : Icons.add_circle_outline,
-              color: AppColors.accent,
             ),
             label: Text(
               officeLocation != null
                   ? 'Update Office Location'
                   : 'Set Office Location',
-              style: const TextStyle(
-                color: AppColors.primary,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             style: OutlinedButton.styleFrom(
               minimumSize: const Size(double.infinity, 50),
-              side: const BorderSide(color: AppColors.accent),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
