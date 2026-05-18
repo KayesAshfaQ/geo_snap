@@ -58,6 +58,11 @@ The `lib/src/core` directory provides the global foundation for all features:
 -   **`theme/`**: A sophisticated Material 3 implementation (`AppTheme`) with semantic color mapping via `AppColors`.
 -   **`network/`**: A pre-configured `ApiClient` with standard error handling for all outbound requests.
 
+## 📦 Releases
+
+You can find the latest debug build of the application in the `releases/` directory:
+- [geo_snap_debug_1.0.0.apk](releases/geo_snap_debug_1.0.0.apk)
+
 ## 🚀 Key Features
 
 -   **Geo-Fenced Attendance**: A smart check-in system that only allows attendance marking when within a 50-meter radius of the saved office location.
