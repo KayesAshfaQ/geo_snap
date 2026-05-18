@@ -21,6 +21,7 @@ class SnapBloc extends Bloc<SnapEvent, SnapState> {
   CameraController? _controller;
   List<CameraDescription> _cameras = [];
   int _currentCameraIndex = 0;
+  Timer? _pollingTimer;
 
   SnapBloc(
     this.saveCapturedImage,
@@ -32,6 +33,7 @@ class SnapBloc extends Bloc<SnapEvent, SnapState> {
     on<_CameraSwitched>(_onCameraSwitched);
     on<_FlashToggled>(_onFlashToggled);
     on<_CapturePressed>(_onCapturePressed);
+    on<_PendingCountUpdated>(_onPendingCountUpdated);
   }
 
   Future<void> _onStarted(_Started event, Emitter<SnapState> emit) async {
@@ -46,9 +48,27 @@ class SnapBloc extends Bloc<SnapEvent, SnapState> {
       final pendingResult = await getPendingUploads().run();
       final pendingCount = pendingResult.fold((_) => 0, (list) => list.length);
 
+      // Start polling for pending count updates (to keep badge in sync)
+      _pollingTimer?.cancel();
+      _pollingTimer = Timer.periodic(const Duration(seconds: 2), (_) {
+        add(const SnapEvent.pendingCountUpdated());
+      });
+
       await _initializeController(emit, pendingCount: pendingCount);
     } catch (e) {
       emit(SnapState.error('Failed to initialize camera: $e'));
+    }
+  }
+
+  Future<void> _onPendingCountUpdated(_PendingCountUpdated event, Emitter<SnapState> emit) async {
+    if (state is! _Ready) return;
+    final currentState = state as _Ready;
+
+    final pendingResult = await getPendingUploads().run();
+    final pendingCount = pendingResult.fold((_) => currentState.pendingUploadsCount, (list) => list.length);
+
+    if (pendingCount != currentState.pendingUploadsCount) {
+      emit(currentState.copyWith(pendingUploadsCount: pendingCount));
     }
   }
 
@@ -165,6 +185,7 @@ class SnapBloc extends Bloc<SnapEvent, SnapState> {
 
   @override
   Future<void> close() async {
+    _pollingTimer?.cancel();
     await _controller?.dispose();
     return super.close();
   }

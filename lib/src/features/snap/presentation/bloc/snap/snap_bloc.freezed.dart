@@ -24,6 +24,7 @@ mixin _$SnapEvent {
     required TResult Function() cameraSwitched,
     required TResult Function() flashToggled,
     required TResult Function() capturePressed,
+    required TResult Function() pendingCountUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +35,7 @@ mixin _$SnapEvent {
     TResult? Function()? cameraSwitched,
     TResult? Function()? flashToggled,
     TResult? Function()? capturePressed,
+    TResult? Function()? pendingCountUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +46,7 @@ mixin _$SnapEvent {
     TResult Function()? cameraSwitched,
     TResult Function()? flashToggled,
     TResult Function()? capturePressed,
+    TResult Function()? pendingCountUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +58,7 @@ mixin _$SnapEvent {
     required TResult Function(_CameraSwitched value) cameraSwitched,
     required TResult Function(_FlashToggled value) flashToggled,
     required TResult Function(_CapturePressed value) capturePressed,
+    required TResult Function(_PendingCountUpdated value) pendingCountUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +69,7 @@ mixin _$SnapEvent {
     TResult? Function(_CameraSwitched value)? cameraSwitched,
     TResult? Function(_FlashToggled value)? flashToggled,
     TResult? Function(_CapturePressed value)? capturePressed,
+    TResult? Function(_PendingCountUpdated value)? pendingCountUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +80,7 @@ mixin _$SnapEvent {
     TResult Function(_CameraSwitched value)? cameraSwitched,
     TResult Function(_FlashToggled value)? flashToggled,
     TResult Function(_CapturePressed value)? capturePressed,
+    TResult Function(_PendingCountUpdated value)? pendingCountUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,6 +147,7 @@ class _$StartedImpl implements _Started {
     required TResult Function() cameraSwitched,
     required TResult Function() flashToggled,
     required TResult Function() capturePressed,
+    required TResult Function() pendingCountUpdated,
   }) {
     return started();
   }
@@ -154,6 +161,7 @@ class _$StartedImpl implements _Started {
     TResult? Function()? cameraSwitched,
     TResult? Function()? flashToggled,
     TResult? Function()? capturePressed,
+    TResult? Function()? pendingCountUpdated,
   }) {
     return started?.call();
   }
@@ -167,6 +175,7 @@ class _$StartedImpl implements _Started {
     TResult Function()? cameraSwitched,
     TResult Function()? flashToggled,
     TResult Function()? capturePressed,
+    TResult Function()? pendingCountUpdated,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -184,6 +193,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(_CameraSwitched value) cameraSwitched,
     required TResult Function(_FlashToggled value) flashToggled,
     required TResult Function(_CapturePressed value) capturePressed,
+    required TResult Function(_PendingCountUpdated value) pendingCountUpdated,
   }) {
     return started(this);
   }
@@ -197,6 +207,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(_CameraSwitched value)? cameraSwitched,
     TResult? Function(_FlashToggled value)? flashToggled,
     TResult? Function(_CapturePressed value)? capturePressed,
+    TResult? Function(_PendingCountUpdated value)? pendingCountUpdated,
   }) {
     return started?.call(this);
   }
@@ -210,6 +221,7 @@ class _$StartedImpl implements _Started {
     TResult Function(_CameraSwitched value)? cameraSwitched,
     TResult Function(_FlashToggled value)? flashToggled,
     TResult Function(_CapturePressed value)? capturePressed,
+    TResult Function(_PendingCountUpdated value)? pendingCountUpdated,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -293,6 +305,7 @@ class _$ZoomChangedImpl implements _ZoomChanged {
     required TResult Function() cameraSwitched,
     required TResult Function() flashToggled,
     required TResult Function() capturePressed,
+    required TResult Function() pendingCountUpdated,
   }) {
     return zoomChanged(zoom);
   }
@@ -306,6 +319,7 @@ class _$ZoomChangedImpl implements _ZoomChanged {
     TResult? Function()? cameraSwitched,
     TResult? Function()? flashToggled,
     TResult? Function()? capturePressed,
+    TResult? Function()? pendingCountUpdated,
   }) {
     return zoomChanged?.call(zoom);
   }
@@ -319,6 +333,7 @@ class _$ZoomChangedImpl implements _ZoomChanged {
     TResult Function()? cameraSwitched,
     TResult Function()? flashToggled,
     TResult Function()? capturePressed,
+    TResult Function()? pendingCountUpdated,
     required TResult orElse(),
   }) {
     if (zoomChanged != null) {
@@ -336,6 +351,7 @@ class _$ZoomChangedImpl implements _ZoomChanged {
     required TResult Function(_CameraSwitched value) cameraSwitched,
     required TResult Function(_FlashToggled value) flashToggled,
     required TResult Function(_CapturePressed value) capturePressed,
+    required TResult Function(_PendingCountUpdated value) pendingCountUpdated,
   }) {
     return zoomChanged(this);
   }
@@ -349,6 +365,7 @@ class _$ZoomChangedImpl implements _ZoomChanged {
     TResult? Function(_CameraSwitched value)? cameraSwitched,
     TResult? Function(_FlashToggled value)? flashToggled,
     TResult? Function(_CapturePressed value)? capturePressed,
+    TResult? Function(_PendingCountUpdated value)? pendingCountUpdated,
   }) {
     return zoomChanged?.call(this);
   }
@@ -362,6 +379,7 @@ class _$ZoomChangedImpl implements _ZoomChanged {
     TResult Function(_CameraSwitched value)? cameraSwitched,
     TResult Function(_FlashToggled value)? flashToggled,
     TResult Function(_CapturePressed value)? capturePressed,
+    TResult Function(_PendingCountUpdated value)? pendingCountUpdated,
     required TResult orElse(),
   }) {
     if (zoomChanged != null) {
@@ -458,6 +476,7 @@ class _$FocusChangedImpl implements _FocusChanged {
     required TResult Function() cameraSwitched,
     required TResult Function() flashToggled,
     required TResult Function() capturePressed,
+    required TResult Function() pendingCountUpdated,
   }) {
     return focusChanged(point, offset);
   }
@@ -471,6 +490,7 @@ class _$FocusChangedImpl implements _FocusChanged {
     TResult? Function()? cameraSwitched,
     TResult? Function()? flashToggled,
     TResult? Function()? capturePressed,
+    TResult? Function()? pendingCountUpdated,
   }) {
     return focusChanged?.call(point, offset);
   }
@@ -484,6 +504,7 @@ class _$FocusChangedImpl implements _FocusChanged {
     TResult Function()? cameraSwitched,
     TResult Function()? flashToggled,
     TResult Function()? capturePressed,
+    TResult Function()? pendingCountUpdated,
     required TResult orElse(),
   }) {
     if (focusChanged != null) {
@@ -501,6 +522,7 @@ class _$FocusChangedImpl implements _FocusChanged {
     required TResult Function(_CameraSwitched value) cameraSwitched,
     required TResult Function(_FlashToggled value) flashToggled,
     required TResult Function(_CapturePressed value) capturePressed,
+    required TResult Function(_PendingCountUpdated value) pendingCountUpdated,
   }) {
     return focusChanged(this);
   }
@@ -514,6 +536,7 @@ class _$FocusChangedImpl implements _FocusChanged {
     TResult? Function(_CameraSwitched value)? cameraSwitched,
     TResult? Function(_FlashToggled value)? flashToggled,
     TResult? Function(_CapturePressed value)? capturePressed,
+    TResult? Function(_PendingCountUpdated value)? pendingCountUpdated,
   }) {
     return focusChanged?.call(this);
   }
@@ -527,6 +550,7 @@ class _$FocusChangedImpl implements _FocusChanged {
     TResult Function(_CameraSwitched value)? cameraSwitched,
     TResult Function(_FlashToggled value)? flashToggled,
     TResult Function(_CapturePressed value)? capturePressed,
+    TResult Function(_PendingCountUpdated value)? pendingCountUpdated,
     required TResult orElse(),
   }) {
     if (focusChanged != null) {
@@ -592,6 +616,7 @@ class _$CameraSwitchedImpl implements _CameraSwitched {
     required TResult Function() cameraSwitched,
     required TResult Function() flashToggled,
     required TResult Function() capturePressed,
+    required TResult Function() pendingCountUpdated,
   }) {
     return cameraSwitched();
   }
@@ -605,6 +630,7 @@ class _$CameraSwitchedImpl implements _CameraSwitched {
     TResult? Function()? cameraSwitched,
     TResult? Function()? flashToggled,
     TResult? Function()? capturePressed,
+    TResult? Function()? pendingCountUpdated,
   }) {
     return cameraSwitched?.call();
   }
@@ -618,6 +644,7 @@ class _$CameraSwitchedImpl implements _CameraSwitched {
     TResult Function()? cameraSwitched,
     TResult Function()? flashToggled,
     TResult Function()? capturePressed,
+    TResult Function()? pendingCountUpdated,
     required TResult orElse(),
   }) {
     if (cameraSwitched != null) {
@@ -635,6 +662,7 @@ class _$CameraSwitchedImpl implements _CameraSwitched {
     required TResult Function(_CameraSwitched value) cameraSwitched,
     required TResult Function(_FlashToggled value) flashToggled,
     required TResult Function(_CapturePressed value) capturePressed,
+    required TResult Function(_PendingCountUpdated value) pendingCountUpdated,
   }) {
     return cameraSwitched(this);
   }
@@ -648,6 +676,7 @@ class _$CameraSwitchedImpl implements _CameraSwitched {
     TResult? Function(_CameraSwitched value)? cameraSwitched,
     TResult? Function(_FlashToggled value)? flashToggled,
     TResult? Function(_CapturePressed value)? capturePressed,
+    TResult? Function(_PendingCountUpdated value)? pendingCountUpdated,
   }) {
     return cameraSwitched?.call(this);
   }
@@ -661,6 +690,7 @@ class _$CameraSwitchedImpl implements _CameraSwitched {
     TResult Function(_CameraSwitched value)? cameraSwitched,
     TResult Function(_FlashToggled value)? flashToggled,
     TResult Function(_CapturePressed value)? capturePressed,
+    TResult Function(_PendingCountUpdated value)? pendingCountUpdated,
     required TResult orElse(),
   }) {
     if (cameraSwitched != null) {
@@ -718,6 +748,7 @@ class _$FlashToggledImpl implements _FlashToggled {
     required TResult Function() cameraSwitched,
     required TResult Function() flashToggled,
     required TResult Function() capturePressed,
+    required TResult Function() pendingCountUpdated,
   }) {
     return flashToggled();
   }
@@ -731,6 +762,7 @@ class _$FlashToggledImpl implements _FlashToggled {
     TResult? Function()? cameraSwitched,
     TResult? Function()? flashToggled,
     TResult? Function()? capturePressed,
+    TResult? Function()? pendingCountUpdated,
   }) {
     return flashToggled?.call();
   }
@@ -744,6 +776,7 @@ class _$FlashToggledImpl implements _FlashToggled {
     TResult Function()? cameraSwitched,
     TResult Function()? flashToggled,
     TResult Function()? capturePressed,
+    TResult Function()? pendingCountUpdated,
     required TResult orElse(),
   }) {
     if (flashToggled != null) {
@@ -761,6 +794,7 @@ class _$FlashToggledImpl implements _FlashToggled {
     required TResult Function(_CameraSwitched value) cameraSwitched,
     required TResult Function(_FlashToggled value) flashToggled,
     required TResult Function(_CapturePressed value) capturePressed,
+    required TResult Function(_PendingCountUpdated value) pendingCountUpdated,
   }) {
     return flashToggled(this);
   }
@@ -774,6 +808,7 @@ class _$FlashToggledImpl implements _FlashToggled {
     TResult? Function(_CameraSwitched value)? cameraSwitched,
     TResult? Function(_FlashToggled value)? flashToggled,
     TResult? Function(_CapturePressed value)? capturePressed,
+    TResult? Function(_PendingCountUpdated value)? pendingCountUpdated,
   }) {
     return flashToggled?.call(this);
   }
@@ -787,6 +822,7 @@ class _$FlashToggledImpl implements _FlashToggled {
     TResult Function(_CameraSwitched value)? cameraSwitched,
     TResult Function(_FlashToggled value)? flashToggled,
     TResult Function(_CapturePressed value)? capturePressed,
+    TResult Function(_PendingCountUpdated value)? pendingCountUpdated,
     required TResult orElse(),
   }) {
     if (flashToggled != null) {
@@ -844,6 +880,7 @@ class _$CapturePressedImpl implements _CapturePressed {
     required TResult Function() cameraSwitched,
     required TResult Function() flashToggled,
     required TResult Function() capturePressed,
+    required TResult Function() pendingCountUpdated,
   }) {
     return capturePressed();
   }
@@ -857,6 +894,7 @@ class _$CapturePressedImpl implements _CapturePressed {
     TResult? Function()? cameraSwitched,
     TResult? Function()? flashToggled,
     TResult? Function()? capturePressed,
+    TResult? Function()? pendingCountUpdated,
   }) {
     return capturePressed?.call();
   }
@@ -870,6 +908,7 @@ class _$CapturePressedImpl implements _CapturePressed {
     TResult Function()? cameraSwitched,
     TResult Function()? flashToggled,
     TResult Function()? capturePressed,
+    TResult Function()? pendingCountUpdated,
     required TResult orElse(),
   }) {
     if (capturePressed != null) {
@@ -887,6 +926,7 @@ class _$CapturePressedImpl implements _CapturePressed {
     required TResult Function(_CameraSwitched value) cameraSwitched,
     required TResult Function(_FlashToggled value) flashToggled,
     required TResult Function(_CapturePressed value) capturePressed,
+    required TResult Function(_PendingCountUpdated value) pendingCountUpdated,
   }) {
     return capturePressed(this);
   }
@@ -900,6 +940,7 @@ class _$CapturePressedImpl implements _CapturePressed {
     TResult? Function(_CameraSwitched value)? cameraSwitched,
     TResult? Function(_FlashToggled value)? flashToggled,
     TResult? Function(_CapturePressed value)? capturePressed,
+    TResult? Function(_PendingCountUpdated value)? pendingCountUpdated,
   }) {
     return capturePressed?.call(this);
   }
@@ -913,6 +954,7 @@ class _$CapturePressedImpl implements _CapturePressed {
     TResult Function(_CameraSwitched value)? cameraSwitched,
     TResult Function(_FlashToggled value)? flashToggled,
     TResult Function(_CapturePressed value)? capturePressed,
+    TResult Function(_PendingCountUpdated value)? pendingCountUpdated,
     required TResult orElse(),
   }) {
     if (capturePressed != null) {
@@ -924,6 +966,139 @@ class _$CapturePressedImpl implements _CapturePressed {
 
 abstract class _CapturePressed implements SnapEvent {
   const factory _CapturePressed() = _$CapturePressedImpl;
+}
+
+/// @nodoc
+abstract class _$$PendingCountUpdatedImplCopyWith<$Res> {
+  factory _$$PendingCountUpdatedImplCopyWith(_$PendingCountUpdatedImpl value,
+          $Res Function(_$PendingCountUpdatedImpl) then) =
+      __$$PendingCountUpdatedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$PendingCountUpdatedImplCopyWithImpl<$Res>
+    extends _$SnapEventCopyWithImpl<$Res, _$PendingCountUpdatedImpl>
+    implements _$$PendingCountUpdatedImplCopyWith<$Res> {
+  __$$PendingCountUpdatedImplCopyWithImpl(_$PendingCountUpdatedImpl _value,
+      $Res Function(_$PendingCountUpdatedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$PendingCountUpdatedImpl implements _PendingCountUpdated {
+  const _$PendingCountUpdatedImpl();
+
+  @override
+  String toString() {
+    return 'SnapEvent.pendingCountUpdated()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PendingCountUpdatedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(double zoom) zoomChanged,
+    required TResult Function(Offset point, Offset offset) focusChanged,
+    required TResult Function() cameraSwitched,
+    required TResult Function() flashToggled,
+    required TResult Function() capturePressed,
+    required TResult Function() pendingCountUpdated,
+  }) {
+    return pendingCountUpdated();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(double zoom)? zoomChanged,
+    TResult? Function(Offset point, Offset offset)? focusChanged,
+    TResult? Function()? cameraSwitched,
+    TResult? Function()? flashToggled,
+    TResult? Function()? capturePressed,
+    TResult? Function()? pendingCountUpdated,
+  }) {
+    return pendingCountUpdated?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(double zoom)? zoomChanged,
+    TResult Function(Offset point, Offset offset)? focusChanged,
+    TResult Function()? cameraSwitched,
+    TResult Function()? flashToggled,
+    TResult Function()? capturePressed,
+    TResult Function()? pendingCountUpdated,
+    required TResult orElse(),
+  }) {
+    if (pendingCountUpdated != null) {
+      return pendingCountUpdated();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_ZoomChanged value) zoomChanged,
+    required TResult Function(_FocusChanged value) focusChanged,
+    required TResult Function(_CameraSwitched value) cameraSwitched,
+    required TResult Function(_FlashToggled value) flashToggled,
+    required TResult Function(_CapturePressed value) capturePressed,
+    required TResult Function(_PendingCountUpdated value) pendingCountUpdated,
+  }) {
+    return pendingCountUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_ZoomChanged value)? zoomChanged,
+    TResult? Function(_FocusChanged value)? focusChanged,
+    TResult? Function(_CameraSwitched value)? cameraSwitched,
+    TResult? Function(_FlashToggled value)? flashToggled,
+    TResult? Function(_CapturePressed value)? capturePressed,
+    TResult? Function(_PendingCountUpdated value)? pendingCountUpdated,
+  }) {
+    return pendingCountUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ZoomChanged value)? zoomChanged,
+    TResult Function(_FocusChanged value)? focusChanged,
+    TResult Function(_CameraSwitched value)? cameraSwitched,
+    TResult Function(_FlashToggled value)? flashToggled,
+    TResult Function(_CapturePressed value)? capturePressed,
+    TResult Function(_PendingCountUpdated value)? pendingCountUpdated,
+    required TResult orElse(),
+  }) {
+    if (pendingCountUpdated != null) {
+      return pendingCountUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PendingCountUpdated implements SnapEvent {
+  const factory _PendingCountUpdated() = _$PendingCountUpdatedImpl;
 }
 
 /// @nodoc

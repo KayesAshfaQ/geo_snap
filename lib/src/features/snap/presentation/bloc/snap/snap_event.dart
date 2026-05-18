@@ -11,4 +11,5 @@ class SnapEvent with _$SnapEvent {
   const factory SnapEvent.cameraSwitched() = _CameraSwitched;
   const factory SnapEvent.flashToggled() = _FlashToggled;
   const factory SnapEvent.capturePressed() = _CapturePressed;
+  const factory SnapEvent.pendingCountUpdated() = _PendingCountUpdated;
 }

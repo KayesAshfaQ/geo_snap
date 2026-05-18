@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:workmanager/workmanager.dart';
 import '../../../domain/entities/media_asset.dart';
 import '../../../domain/usecases/get_pending_uploads.dart';
+import '../../../domain/usecases/sync_snaps.dart';
 
 part 'sync_event.dart';
 part 'sync_state.dart';
@@ -14,10 +15,15 @@ part 'sync_bloc.freezed.dart';
 @injectable
 class SyncBloc extends Bloc<SyncEvent, SyncState> {
   final GetPendingUploads getPendingUploads;
+  final SyncSnaps syncSnaps;
   Timer? _pollingTimer;
   StreamSubscription? _connectivitySubscription;
+  bool _isSyncing = false;
 
-  SyncBloc({required this.getPendingUploads}) : super(const SyncState.initial()) {
+  SyncBloc({
+    required this.getPendingUploads,
+    required this.syncSnaps,
+  }) : super(const SyncState.initial()) {
     on<_Started>(_onStarted);
     on<_SyncRequested>(_onSyncRequested);
     on<_UpdateQueue>(_onUpdateQueue);
@@ -28,15 +34,15 @@ class SyncBloc extends Bloc<SyncEvent, SyncState> {
     emit(const SyncState.loading());
     
     // Initial check
-    final connectivity = await Connectivity().checkConnectivity();
-    add(SyncEvent.connectivityChanged(connectivity));
+    final connectivityList = await Connectivity().checkConnectivity();
+    add(SyncEvent.connectivityChanged(connectivityList));
 
     // Listen to connectivity
     _connectivitySubscription = Connectivity().onConnectivityChanged.listen((result) {
       add(SyncEvent.connectivityChanged(result));
     });
 
-    // Start polling for UI updates (since worker runs in separate thread)
+    // Start polling for UI updates
     _pollingTimer = Timer.periodic(const Duration(seconds: 1), (_) {
       add(const SyncEvent.updateQueue());
     });
@@ -77,7 +83,11 @@ class SyncBloc extends Bloc<SyncEvent, SyncState> {
     emit(currentState.copyWith(isOnline: isOnline));
   }
 
-  void _onSyncRequested(_SyncRequested event, Emitter<SyncState> emit) {
+  Future<void> _onSyncRequested(_SyncRequested event, Emitter<SyncState> emit) async {
+    if (_isSyncing) return;
+    _isSyncing = true;
+
+    // Register background task as well (for retries)
     Workmanager().registerOneOffTask(
       "snap-sync-task",
       "syncSnaps",
@@ -85,6 +95,12 @@ class SyncBloc extends Bloc<SyncEvent, SyncState> {
         networkType: NetworkType.connected,
       ),
     );
+
+    // Run foreground sync for immediate feedback without blocking the event loop
+    syncSnaps().run().then((_) {
+      _isSyncing = false;
+      add(const SyncEvent.updateQueue());
+    });
   }
 
   @override
