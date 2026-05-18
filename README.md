@@ -63,11 +63,37 @@ The `lib/src/core` directory provides the global foundation for all features:
 You can find the latest debug build of the application in the `releases/` directory:
 - [geo_snap_debug_1.0.0.apk](releases/geo_snap_debug_1.0.0.apk)
 
+## 🧪 Testing Strategy
+
+GeoSnap emphasizes reliability through a multi-layered testing suite. The project uses `mocktail` for expressive mocking and `fake_async` for precise timing control in asynchronous tests.
+
+### 🧪 Test Coverage
+
+The project includes **26 unit tests** across two core domains:
+
+#### 1. Snap (Sync) Feature
+- **Use Case (`SyncSnaps`)**: Verified orchestration logic, internet connectivity gatekeeping, and failure propagation.
+- **Repository (`SnapRepositoryImpl`)**: Tested the resilient synchronization flow, including mock chunking and state transitions, using `fakeAsync` to handle simulated delays.
+- **Service (`ConnectivityService`)**: Verified abstraction of platform connectivity states.
+
+#### 2. Attendance Feature
+- **Presentation (`AttendanceBloc`)**: Validated geofencing logic, state transitions (Loading -> Loaded -> Error), and distance-based range checking.
+- **Domain (Use Cases)**: Verified business rules for marking and retrieving attendance.
+- **Data (Repository & Data Source)**: Ensured correct mapping between `LocationModel` and `AttendanceLocation` entities, and validated `SharedPreferences` persistence.
+
+### 🏃 How to Run Tests
+
+To execute the full test suite and verify the project's health:
+
+```bash
+flutter test
+```
+
 ## 🚀 Key Features
 
 -   **Geo-Fenced Attendance**: A smart check-in system that only allows attendance marking when within a 50-meter radius of the saved office location.
 -   **Advanced Camera UI**: Custom camera preview with manual focus, pinch-to-zoom, and multi-camera support.
--   **Resilient Sync Engine**: A background synchronization system that monitors connection stability and automatically retries pending uploads without user intervention.
+-   **Resilient Sync Engine**: A refactored background synchronization system that decouples infrastructure (Connectivity) from domain logic. It monitors connection stability and automatically retries pending uploads without user intervention.
 -   **Multi-Theme Support**: Seamlessly transitions between Light and Dark modes based on system settings.
 
 ## 🛠️ How to Run
