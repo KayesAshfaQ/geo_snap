@@ -43,13 +43,22 @@ The project follows a **Feature-Driven Clean Architecture**. Each feature must l
 
 ## Core Layer (`lib/src/core/`)
 
-- **`di/`**: Dependency injection setup.
+- **`di/`**: Dependency injection setup using `injectable` and `get_it`.
 - **`error/`**: Contains base `Failure` class and its implementations (e.g., `ServerFailure`, `CacheFailure`).
-- **`network/`**: Network configurations.
-- **`router/`**: App routing using `go_router`.
-- **`services/`**: Abstracted platform/device capabilities (e.g., `LocationService`). Interfaces and Implementations.
+- **`network/`**: Network configurations and API operations.
+  - **`api_client.dart`**: Central point for all API calls and network operations.
+- **`router/`**: App routing.
+  - **`app_router.dart`**: All routes must be defined here using `go_router`.
+- **`services/`**: Abstracted platform/device capabilities and reusable package wrappers.
+  - Create services for cross-cutting concerns like `CameraService`, `LocationService`, and `StorageService` (for `shared_preferences`).
 - **`theme/`**: Centralized theming (`AppColors`, `AppTheme`). **Never use hardcoded colors in widgets.** Always reference `AppColors`.
-- **`constants/`**: App-wide constants (e.g., `StorageKeys`).
+- **`constants/`**: App-wide constants.
+  - **`storage_keys.dart`**: Local storage / shared-pref keys.
+  - All constant strings, URLs, and keys MUST be declared here and reused throughout the app.
+
+## Specialized Skills
+
+- **Feature & Usecase Creation**: Always use the `flutter-my-arch` skill to scaffold new features, usecases, and related layers to ensure consistency with our architectural patterns.
 
 ## Coding Standards
 
@@ -72,6 +81,8 @@ The project follows a **Feature-Driven Clean Architecture**. Each feature must l
 - Always import `../../../../core/theme/app_colors.dart` (adjust path as needed) and use `AppColors.primary`, `AppColors.success`, etc.
 
 ## Project-Specific Guidance
-- When generating code, scan the codebase thoroughly. Match the style and patterns of surrounding code.
-- Respect the boundaries: UI calls BLoC, BLoC calls UseCase, UseCase calls Repository, Repository calls DataSource.
-- When in doubt, prioritize consistency with existing code over external best practices.
+- **Code Consistency**: When generating code, scan the codebase thoroughly. Match the style and patterns of surrounding code.
+- **Strict Boundaries**: Respect the boundaries: UI calls BLoC, BLoC calls UseCase, UseCase calls Repository, Repository calls DataSource.
+- **Architectural Integrity**: When in doubt, prioritize consistency with existing code over external best practices.
+- **Service Reuse**: Before implementing package-specific logic in a feature, check if it should be abstracted into a service in `core/services/`.
+- **Constant Usage**: Never hardcode strings or keys that are used in multiple places. Declare them in `core/constants/`.
